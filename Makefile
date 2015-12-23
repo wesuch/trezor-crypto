@@ -55,7 +55,7 @@ libtrezor-crypto.so: $(SRCS)
 	$(CC) $(CFLAGS) -fPIC -shared $(SRCS) -o libtrezor-crypto.so
 
 libtrezor-crypto.a: $(OBJS)
-	$(AR) rcs libtrezor-crypto.so $(OBJS)
+	$(AR) rcs libtrezor-crypto.a $(OBJS)
 
 clean:
 	rm -f *.o tests test-openssl libtrezor-crypto.so libtrezor-crypto.a
