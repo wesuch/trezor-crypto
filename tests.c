@@ -31,6 +31,7 @@
 #include "bignum.h"
 #include "base58.h"
 #include "bip32.h"
+#include "bip32_ext.h"
 #include "bip39.h"
 #include "ecdsa.h"
 #include "pbkdf2.h"
@@ -270,6 +271,16 @@ START_TEST(test_bip32_vector_1)
 	memcpy(&node3, &node, sizeof(HDNode));
 	memset(&node3.private_key, 0, 32);
 	ck_assert_mem_eq(&node2, &node3, sizeof(HDNode));
+
+
+       // test for hdnode_locate function
+        hdnode_from_seed(fromhex("000102030405060708090a0b0c0d0e0f"), 16, &node);
+
+        hdnode_locate(&node, "m/0'/1/2'/2/1000000000");
+        ck_assert_int_eq(node.fingerprint, 0xd880d7d8);
+        ck_assert_mem_eq(node.chain_code,  fromhex("c783e67b921d2beb8f6b389cc646d7263b4145701dadd2161548a8b078e65e9e"), 32);
+        ck_assert_mem_eq(node.private_key, fromhex("471b76e389e528d6de6d816857e012c5455051cad6660850e58372a6c3e6e7c8"), 32);
+        ck_assert_mem_eq(node.public_key,  fromhex("022a471424da5e657499d1ff51cb43c47481a03b1e77f951fe64cec9f5a48f7011"), 33);
 }
 END_TEST
 

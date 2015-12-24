@@ -30,7 +30,7 @@ ifdef SMALL
 CFLAGS += -DUSE_PRECOMPUTED_IV=0 -DUSE_PRECOMPUTED_CP=0
 endif
 
-SRCS   = bignum.c ecdsa.c secp256k1.c nist256p1.c rand.c hmac.c bip32.c bip39.c pbkdf2.c base58.c
+SRCS   = bignum.c ecdsa.c secp256k1.c nist256p1.c rand.c hmac.c bip32.c bip32_ext.c bip39.c pbkdf2.c base58.c
 SRCS  += ripemd160.c
 SRCS  += sha2.c
 SRCS  += aescrypt.c aeskey.c aestab.c aes_modes.c
