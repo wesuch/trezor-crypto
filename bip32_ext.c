@@ -49,15 +49,14 @@ int hdnode_locate(HDNode *inout, char *path)
         for (j = i; j < strlen(path); j++)
     	    if (path[j] == '/')
                 break;
-        strncpy(c, path + i, j - i - 1);
+        strncpy(c, path + i, j - i);
         if (c[strlen(c) - 1] == '\'')
         {
             c[strlen(c)-1] = '\0';
-            sscanf (c, "%d", &k);
-            k |= 0x80000000;
+            k = atoi (c) | 0x80000000;
         }
         else
-            sscanf (c, "%d", &k);
+            k = atoi(c);
 
         if (path[0] == 'm')
             hdnode_private_ckd(inout, k);
