@@ -29,13 +29,15 @@
 #endif
 
 #include "rand.h"
+#ifndef _WIN32
+	static FILE *frand = NULL;
+#endif
 
 int finalize_rand(void)
 {
 #ifdef _WIN32
 	return 0;
 #else
-	static FILE *frand = NULL;
 	if (!frand) return 0;
 	int err = fclose(frand);
 	frand = NULL;
