@@ -66,4 +66,5 @@ int hdnode_locate(HDNode *inout, char *path)
             break;
         i = j;
     }
+    return 1;
 }
